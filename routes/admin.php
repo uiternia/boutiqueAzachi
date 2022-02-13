@@ -23,12 +23,20 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.welcome');
-});
+//Route::get('/', function () {
+    //return view('admin.welcome');
+//});
 
 Route::resource('owners', OwnersController::class)
-->middleware('auth:admin');
+->middleware('auth:admin')
+->except(['show']);
+
+Route::prefix('expired-owners')->
+middleware('auth:admin')->group(function(){
+Route::get('index', [OwnersController::class,'expiredOwnerIndex'])->name('expired-owners.index');
+Route::patch('restore/{owner}',[OwnersController::class, 'expiredOwnerRestore'])->name('expired-owners.restore');
+Route::post('destroy/{owner}',[OwnersController::class, 'expiredOwnerDestroy'])->name('expired-owners.destroy');
+});
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
