@@ -16,10 +16,18 @@ class OwnerSeeder extends Seeder
     public function run()
     {
         DB::table('owners')->insert([
+            [
              'name' => 'test1',
-             'email' => 'tes1@test.com',
+             'email' => 'test1@test.com',
              'password' => Hash::make('passworddesu'),
              'created_at' => '2022/02/12 12:12:12'
+            ],
+            [
+                'name' => 'test2',
+                'email' => 'test2@test.com',
+                'password' => Hash::make('passworddesu'),
+                'created_at' => '2022/02/12 12:12:12'
+            ],
         ]);
     }
 }
