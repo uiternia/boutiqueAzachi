@@ -28,11 +28,9 @@
                     </div>
                  <section class="text-gray-600 body-font">
                     <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-                        @if(empty($shop->filename))
-                       <img class=" w-5/6 mb-10 object-cover object-center rounded" src="{{asset('images/noimage.jpg')}}">
-                        @else
-                       <img class="w-5/6md:w-3/6  mb-10 object-cover object-center rounded" src="{{asset('storage/shops/' . $shop->filename)}}">
-                        @endif
+                        <div class="mb-3 border-double border-4 border-gray-600">
+                        <x-thumbnail :filename="$shop->filename" type="shops" />
+                        </div>
                       <div class="text-center lg:w-2/3 w-full">
                         <h1 class="font-sans sm:text-4xl text-3xl mb-4 text-gray-900"> {{ $shop -> name }}</h1>
                         <p class="mb-8 leading-relaxed">{{ $shop->information }}</p>

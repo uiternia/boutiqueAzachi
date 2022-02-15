@@ -43,6 +43,7 @@
                               @csrf
                               @method('delete')
                               <a href="#" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-green-500 rounded" data-id="{{ $owner->id }}" onclick="deletePost(this)">消去</a>
+                            </form>
                             </tr>
                           </tr>
                           @endforeach   
