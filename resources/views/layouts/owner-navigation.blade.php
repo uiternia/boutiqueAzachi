@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="items-center">
                     <a href="{{ route('owner.dashboard') }}">
-                        <div class="w-1/3 h-1/3">
+                        <div class="w-1/2 h-1/2">
                         <x-application-logo class="block fill-current text-gray-600" />
                         </div>
                     </a>
@@ -22,6 +22,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
                         アイテムの画像管理
+                    </x-nav-link>
+                    <x-nav-link :href="route('owner.items.index')" :active="request()->routeIs('owner.items.index')">
+                        アイテム管理
                     </x-nav-link>
                 </div>
             </div>
@@ -79,6 +82,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
                 アイテムの画像管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('owner.items.index')" :active="request()->routeIs('owner.items.index')">
+                アイテム管理
             </x-responsive-nav-link>
         </div>
 
