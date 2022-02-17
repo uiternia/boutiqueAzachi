@@ -48,8 +48,9 @@
                             <input type="number" id="price" name="price" value="{{ old('price') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           </div>
                         </div>
+
                       
-                        <div class="my-5"><h2>アイテムのサイズがフリーな場合</h2></div>
+                        <div class="my-5"><h2>アイテムのサイズが無い場合</h2></div>
                          <div class="p-2 w-1/2">
                           <div class="border p-2">
                           <div class="relative">

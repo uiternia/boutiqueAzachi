@@ -41,4 +41,5 @@ class ItemRequest extends FormRequest
                 'is_selling' => ['required','boolean']
         ];
     }
+    
 }

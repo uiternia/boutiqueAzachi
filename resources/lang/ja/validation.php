@@ -132,9 +132,13 @@ return [
             'rule-name' => 'custom-message',
         ],
         'attributes' => [
-            'name' => '名前', // 追加
-            'email' => 'メールアドレス', // 追加
-            'password' => 'パスワード' // 追加
+            'name' => '名前', 
+            'email' => 'メールアドレス', 
+            'password' => 'パスワード', 
+            'quantity1' => '数量',
+            'quantity2' => '数量',
+            'quantity3' => '数量',
+            'quantity4' => '数量',
             ],
     ],
 ];
