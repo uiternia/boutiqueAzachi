@@ -9,7 +9,7 @@
 
 <div>
   @if(empty($filename))
-  <img src="{{ asset('images/noimages.jpg')}}">
+  <img src="{{ asset('images/noimage.jpg')}}">
   @else
   <img src="{{ asset($path .$filename)}}">
   @endif
