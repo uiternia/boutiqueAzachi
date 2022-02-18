@@ -20,7 +20,15 @@
                               <div class="border border-double border-4 border-gray-600 rounded-md p-2 md:p-4">
                                 <x-thumbnail filename="{{$item->imageFirst->filename ?? ''}}" type="products" />
                               </div>
+                              <div class="flex justify-between">
                               <div class="text-gray-700">{{ $item->name}}</div>
+                             
+                                @if($item->is_selling)
+                                  <span>販売中</span>
+                                @else
+                                <span>停止中</span>
+                                @endif  
+                            </div>
                             </a>
                           </div>   
               

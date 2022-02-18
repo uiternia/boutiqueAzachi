@@ -5,18 +5,29 @@
       </h2>
   </x-slot>
 
+  
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 bg-white border-b border-gray-200">
                 <section class="text-gray-600 body-font relative">
-                  <div class="container px-5 py-24 mx-auto">
+                  <form id="delete_{{ $item->id }}" method="POST"action="{{ route('owner.items.destroy', ['item' => $item->id]) }}">
+                    @csrf
+                    @method('delete')
+                    <div class="p-2 w-full flex">
+                        <a href="#" data-id="{{ $item->id }}" onclick="deletePost(this)"
+                          class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">削除</a>
+                    </div>
+                   </form>
+                  <div class="container px-5 py-12 mx-auto">
                     <div class="flex flex-col text-center w-full mb-12">
                       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">アイテム編集</h1>
                     </div>
                     <div class="lg:w-1/2 md:w-2/3 mx-auto">
                       <x-auth-validation-errors class="mb-4" :errors="$errors" />
                       <x-flash-message status="session('status')" />
+                      
+
                       <form method="post" action="{{ route('owner.items.update',['item' => $item->id])}}">
                         @csrf
                         @method('put')
@@ -64,7 +75,7 @@
                           <div class="mr-2"><input type="radio" name="type" value="1" checked>増やす</div>
                           <div><input type="radio" name="type" value="2" >減らす</div>
                         </div>
-                         <div class="p-2 w-1/2">
+                         <div class="p-2">
                             <div class="relative">
                             <label for="quantity1" class="leading-7 text-sm text-gray-600">数量</label>
                             <input type="" id="quantity1" name="quantity1"  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -85,7 +96,7 @@
                             <div class="mr-2"><input type="radio" name="type" value="1">増やす</div>
                             <div><input type="radio" name="type" value="2" >減らす</div>
                           </div>
-                           <div class="p-2 w-1/2">
+                           <div class="p-2 ">
                               <div class="relative">
                               <label for="quantity2" class="leading-7 text-sm text-gray-600">数量</label>
                               <input type="number" id="quantity2" name="quantity2" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -105,7 +116,7 @@
                             <div class="mr-2"><input type="radio" name="type" value="1">増やす</div>
                             <div><input type="radio" name="type" value="2" >減らす</div>
                           </div>
-                           <div class="p-2 w-1/2">
+                           <div class="p-2">
                               <div class="relative">
                               <label for="quantity3" class="leading-7 text-sm text-gray-600">数量</label>
                               <input type="number" id="quantity3" name="quantity3" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -125,7 +136,7 @@
                             <div class="mr-2"><input type="radio" name="type" value="1">増やす</div>
                             <div><input type="radio" name="type" value="2" >減らす</div>
                           </div>
-                           <div class="p-2 w-1/2">
+                           <div class="p-2">
                               <div class="relative">
                               <label for="quantity4" class="leading-7 text-sm text-gray-600">数量</label>
                               <input type="number" id="quantity4" name="quantity4" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -133,7 +144,7 @@
                               <span class="text-sm">0~99の範囲で入力してください</span>
                             </div>
                         </div>
-                        <div class="p-2 w-1/2">
+                        <div class="p-2 w-1/2 my-10">
                           <div class="relative">
                             <label for="category" class="leading-7 text-sm text-gray-600">ブランド名・カテゴリー</label>
                             <select name="category" id="category" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -149,6 +160,7 @@
                           </div>
                         </div>
                         {{--アイテム新規作成時に追加した画像を最初から選択した状態にしたい--}}
+                        <div class="my-5">アイテム画像を追加してください</div>
                       <x-select-image :images="$images" name="image1" />
                       <x-select-image :images="$images" name="image2" />
                       <x-select-image :images="$images" name="image3" />
@@ -163,10 +175,14 @@
                         </div>
                         <div class="flex justify-between p-2 w-full">
                           <div><button type="button" onclick="location.href='{{ route('owner.items.index')}}'" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">戻る</button></div>
-                          <div><button type="submit" class="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">アイテム登録</button></div>
+                          <div><button type="submit" class="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">アイテム更新</button></div>
                         </div>
                       </div>
                         </form>
+                        
+                       
+                      
+                      
                     </div>
                   </div>
                 </section>
@@ -174,6 +190,7 @@
           </div>
       </div>
   </div>
+  
 
 <script>
 'use strict'
@@ -188,8 +205,15 @@
  document.getElementById(imageName + '_thumbnail').src = imagePath + '/' + imageFile
  document.getElementById(imageName + '_hidden').value = imageId
  MicroModal.close(modal);
+ },)
  })
- })
+
+ function deletePost(e) {
+          'use strict';
+          if (confirm('本当に削除してもいいですか？')) {
+              document.getElementById('delete_' + e.dataset.id).submit();
+          }
+      }
  </script>
 
 </x-app-layout>

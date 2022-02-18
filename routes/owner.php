@@ -25,9 +25,7 @@ use App\Http\Controllers\Owner\ItemController;
 |
 */
 
-Route::get('/', function () {
-    return view('owner.welcome');
-});
+
 
 Route::prefix('shops')->
 middleware('auth:owners')->group(function(){
@@ -38,18 +36,19 @@ Route::post('update/{shop}', [ShopController::class,'update'])->name('shops.upda
 
 Route::resource('images',ImageController::class)->middleware('auth:owners')->except('show');
 
-Route::resource('items',ItemController::class)->middleware('auth:owners')->except('show');
 
 Route::get('/dashboard', function () {
     return view('owner.dashboard');
 })->middleware(['auth:owners'])->name('dashboard');
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware('guest')
-                ->name('register');
+Route::resource('items',ItemController::class)->middleware('auth:owners')->except('show');
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware('guest');
+//Route::get('/register', [RegisteredUserController::class, 'create'])
+                //->middleware('guest')
+                //->name('register');
+
+//Route::post('/register', [RegisteredUserController::class, 'store'])
+                //->middleware('guest');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')

@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Http\Requests\UploadImageRequest;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Item;
 
 class ImageController extends Controller
 {
@@ -88,6 +89,34 @@ class ImageController extends Controller
     {
         $image = Image::findOrFail($id);
         $filePath = 'public/products/'. $image->filename;
+
+        $imageInItems = Item::where('image1',$image->id)
+        ->orWhere('image2',$image->id)
+        ->orWhere('image3',$image->id)
+        ->orWhere('image4',$image->id)
+        ->get();
+
+        if($imageInItems){
+            $imageInItems->each(function($item)use($image){
+                if($item->image1 === $image->id){
+                    $item->image1 = null;
+                    $item->save();
+                }
+                if($item->image2 === $image->id){
+                    $item->image2 = null;
+                    $item->save();
+                }
+                if($item->image3 === $image->id){
+                    $item->image3 = null;
+                    $item->save();
+                }
+                if($item->image4 === $image->id){
+                    $item->image4 = null;
+                    $item->save();
+                }
+            });
+        }
+
         if(Storage::exists($filePath)){
             Storage::delete($filePath);
         }

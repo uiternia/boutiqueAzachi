@@ -60,7 +60,9 @@ class ShopController extends Controller
         $shop = Shop::findOrFail($id);
         $shop->name = $request->name;
         $shop->is_selling = $request->is_selling;
+        if(!is_null($imageFile) && $imageFile->isvalid()){
         $shop->filename = $fileNameToStore;
+        }
         $shop->save();
         return redirect()->route('owner.shops.index')
         ->with(['message' => 'ショップ情報を更新しました。',

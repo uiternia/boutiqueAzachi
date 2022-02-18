@@ -8,11 +8,11 @@ use App\Models\BrandCategory;
 use App\Http\Requests\ItemRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Item;
 use App\Models\Shop;
 use App\Models\Image;
 use App\Models\Owner;
 use App\Models\Stock;
+use App\Models\Item;
 use Throwable;
 use Illuminate\Support\Facades\Log;
 use App\Constants\Common;
@@ -32,10 +32,9 @@ class ItemController extends Controller
                 if($itemId !== Auth::id()){ 
                 abort(404); 
                 }
-                }
+            }
                 return $next($request);
-        }
-    );
+        });
     }
     
     public function index()
@@ -109,6 +108,7 @@ class ItemController extends Controller
     public function edit($id)
     {
         $item = Item::findOrFail($id);
+        
         $quantity1 = Stock::where('item_id',$item->id)->sum('quantity1');
         $quantity2 = Stock::where('item_id',$item->id)->sum('quantity2');
         $quantity3 = Stock::where('item_id',$item->id)->sum('quantity3');
@@ -125,6 +125,7 @@ class ItemController extends Controller
 
         $categories = BrandCategory::with('item')
         ->get();
+
 
         return view('owner.items.edit',compact('item','quantity1','quantity2','quantity3','quantity4','shops','images','categories'));
     }
@@ -217,6 +218,11 @@ class ItemController extends Controller
     
     public function destroy($id)
     {
-        //
+        
+       $item = Item::findOrFail($id);
+       $item->delete();
+        
+        return redirect()
+        ->route('owner.items.index');
     }
 }
