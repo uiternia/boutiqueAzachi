@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,10 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('user.dashboard');
-})->middleware(['auth:users'])->name('dashboard');
+Route::middleware('auth:users')->group(function(){
+Route::get('/',[ProductController::class,'index'])->name('products.index');
+Route::get('show/{Product}',[ProductController::class,'show'])->name('products.show');
+});
 
 require __DIR__.'/auth.php';
+

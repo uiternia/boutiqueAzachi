@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="items-center">
                     <a href="{{ route('owner.dashboard') }}">
-                        <div class="w-1/2 h-1/2">
+                        <div class=>
                         <x-application-logo class="block fill-current text-gray-600" />
                         </div>
                     </a>
