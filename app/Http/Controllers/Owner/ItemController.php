@@ -74,6 +74,7 @@ class ItemController extends Controller
                 $item = Item::create([
                     'name' => $request->name,
                     'information' => $request->information,
+                    'sort_order' => $request->sort_order,
                     'price' => $request->price,
                     'shop_id' => $request->shop_id,
                     'item_category_id' => $request->category,
@@ -159,6 +160,7 @@ class ItemController extends Controller
                 $item->name = $request->name;
                 $item->information = $request->information;
                 $item->price = $request->price;
+                $item->sort_order = $request->sort_order;
                 $item->shop_id = $request->shop_id;
                 $item->item_category_id = $request->category;
                 $item->image1 = $request->image1;

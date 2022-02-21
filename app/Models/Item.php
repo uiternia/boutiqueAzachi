@@ -19,6 +19,7 @@ class Item extends Model
         'shop_id',
         'name',
         'information',
+        'sort_order',
         'price',
         'is_selling',
         'sort_order',
