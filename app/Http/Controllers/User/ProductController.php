@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Item;
 
 class ProductController extends Controller
 {
@@ -58,5 +59,10 @@ class ProductController extends Controller
     
 
         return view('user.index',compact('products'));
+    }
+
+    public function show($id){
+        $product = Item::findOrFail($id);
+        return view('user.show',compact('product'));
     }
 }
