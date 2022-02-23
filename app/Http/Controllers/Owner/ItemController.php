@@ -87,10 +87,8 @@ class ItemController extends Controller
                 Stock::create([
                     'item_id' => $item->id,
                     'type' => 1,
-                    'quantity1' => $request->quantity1,
-                    'quantity2' => $request->quantity2,
-                    'quantity3' => $request->quantity3,
-                    'quantity4' => $request->quantity4,
+                    'quantity' => $request->quantity,
+                    
                 ]);
                 
             },2);
@@ -110,10 +108,8 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         
-        $quantity1 = Stock::where('item_id',$item->id)->sum('quantity1');
-        $quantity2 = Stock::where('item_id',$item->id)->sum('quantity2');
-        $quantity3 = Stock::where('item_id',$item->id)->sum('quantity3');
-        $quantity4 = Stock::where('item_id',$item->id)->sum('quantity4');
+        $quantity = Stock::where('item_id',$item->id)->sum('quantity');
+        
 
         $shops = Shop::where('owner_id',Auth::id())
         ->select('id','name')
@@ -128,7 +124,7 @@ class ItemController extends Controller
         ->get();
 
 
-        return view('owner.items.edit',compact('item','quantity1','quantity2','quantity3','quantity4','shops','images','categories'));
+        return view('owner.items.edit',compact('item','quantity','shops','images','categories'));
     }
 
     
@@ -136,20 +132,15 @@ class ItemController extends Controller
     {
         
         $request->validate([
-            'current_quantity1' => ['required', 'integer'],
-            'current_quantity2' => ['required', 'integer'],
-            'current_quantity3' => ['required', 'integer'],
-            'current_quantity4' => ['required', 'integer'],
+            'current_quantity' => ['required', 'integer'],
+            
         ]);
 
         $item = Item::findOrFail($id);
-        $quantity1 = Stock::where('item_id',$item->id)->sum('quantity1');
-        $quantity2 = Stock::where('item_id',$item->id)->sum('quantity2');
-        $quantity3 = Stock::where('item_id',$item->id)->sum('quantity3');
-        $quantity4 = Stock::where('item_id',$item->id)->sum('quantity4');
+        $quantity = Stock::where('item_id',$item->id)->sum('quantity');
        
         //if文を関数化をし見やすくしたい
-       if($request->current_quantity1 !== $quantity1 && $request->current_quantity2 !== $quantity2 && $request->current_quantity3 !== $quantity3 && $request->current_quantity4 !== $quantity4)
+       if($request->current_quantity !== $quantity )
         {
             $id = $request->route()->parameter('item');
             return redirect()->route('owner.items.edit', ['item' => $id])
@@ -173,36 +164,17 @@ class ItemController extends Controller
                 //マジックナンバー回避
 
                 if($request->type === '1'){
-                    $newQuantity1 = $request->quantity1;
+                    $newQuantity = $request->quantity;
                 }
                 if($request->type === '2'){
-                    $newQuantity1 = $request->quantity1 * -1;
+                    $newQuantity = $request->quantity * -1;
                 }
-                if($request->type === '1'){
-                    $newQuantity2 = $request->quantity2;
-                }
-                if($request->type === '2'){
-                    $newQuantity2 = $request->quantity2 * -1;
-                }
-                if($request->type === '1'){
-                    $newQuantity3 = $request->quantity3;
-                }
-                if($request->type === '2'){
-                    $newQuantity3 = $request->quantity3 * -1;
-                }
-                if($request->type === '1'){
-                    $newQuantity4 = $request->quantity4;
-                }
-                if($request->type === '2'){
-                    $newQuantity4 = $request->quantity4 * -1;
-                }
+                
                 Stock::create([
                     'item_id' => $item->id,
                     'type' => $request->type,
-                    'quantity1' => $newQuantity1,
-                    'quantity2' => $newQuantity2,
-                    'quantity3' => $newQuantity3,
-                    'quantity4' => $newQuantity4
+                    'quantity' => $newQuantity,
+                    
                 ]);
             }, 2);
         } catch (Throwable $e) {

@@ -16,28 +16,10 @@ class ProductController extends Controller
 
     public function index()
     {
-        $stocks1 = DB::table('stocks')->select('item_id',
-        DB::raw('sum(quantity1) as quantity1'))
-        ->groupBy('item_id')
-        ->having('quantity1', '>', 1);
-        
-        $stocks2 = DB::table('stocks')->select('item_id',
-        DB::raw('sum(quantity2) as quantity2'))
-        ->groupBy('item_id')
-        ->having('quantity2', '>', 1); 
-
-        $stocks3 = DB::table('stocks')->select('item_id',
-        DB::raw('sum(quantity3) as quantity3'))
-        ->groupBy('item_id')
-        ->having('quantity3', '>', 1); 
-
         $stocks = DB::table('stocks')->select('item_id',
-        DB::raw('sum(quantity4) as quantity4'))
+        DB::raw('sum(quantity) as quantity'))
         ->groupBy('item_id')
-        ->having('quantity4', '>', 1)
-        ->union($stocks1)->union($stocks2)->union($stocks3);
-        
-       
+        ->having('quantity', '>', 1);
         
                  
     $products = DB::table('items')

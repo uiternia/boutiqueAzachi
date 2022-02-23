@@ -68,14 +68,14 @@
                           </div>
                         </div>
                         
-                        {{--1度の更新で在庫を1種類しか変更できない--}}
+                      
 
-                        <div class="my-5"><h2>アイテムのサイズがフリーな場合</h2></div>
+                       
                         <div class="border p-2">
                         <div class="p-2 w-3/4 ">
                             <div class="relative">
-                            <label for="current_quantity1" value="{{ $quantity1 }}" >現在の在庫  =  {{$quantity1}}</label>
-                            <input type="hidden" id="current_quantity1" name="current_quantity1" value="{{$quantity1}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <label for="current_quantity1" value="{{ $quantity }}" >現在の在庫  =  {{$quantity}}</label>
+                            <input type="hidden" id="current_quantity" name="current_quantity" value="{{$quantity}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
                         <div class="flex justify-around my-4">
@@ -84,73 +84,16 @@
                         </div>
                          <div class="p-2">
                             <div class="relative">
-                            <label for="quantity1" class="leading-7 text-sm text-gray-600">数量</label>
-                            <input type="" id="quantity1" name="quantity1"  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <label for="quantity" class="leading-7 text-sm text-gray-600">数量</label>
+                            <input type="" id="quantity" name="quantity" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                             <span class="text-sm">0~99の範囲で入力してください</span>
                           </div>
                         </div>
-                        <div class="my-5"><h2>アイテムにサイズがある場合</h2></div>
+                       
+                       
 
-                        <div class="border p-2">
-                          <div class="p-2 w-48 ">
-                              <div class="relative">
-                              <label for="current_quantity2" value="{{ $quantity2 }}" >現在の在庫Sサイズ = {{$quantity2}}</label>
-                              <input type="hidden" id="current_quantity2" name="current_quantity2" value="{{ $quantity2}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                              </div>
-                          </div>
-                          <div class="flex justify-around my-4">
-                            <div class="mr-2"><input type="radio" name="type" value="1">増やす</div>
-                            <div><input type="radio" name="type" value="2" >減らす</div>
-                          </div>
-                           <div class="p-2 ">
-                              <div class="relative">
-                              <label for="quantity2" class="leading-7 text-sm text-gray-600">数量</label>
-                              <input type="number" id="quantity2" name="quantity2" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                              </div>
-                              <span class="text-sm">0~99の範囲で入力してください</span>
-                            </div>
-                        </div>
-
-                        <div class="border p-2">
-                          <div class="p-2 w-48 ">
-                              <div class="relative">
-                              <label for="current_quantity3" value="{{ $quantity3 }}" >現在の在庫Mサイズ = {{$quantity3}}</label>
-                              <input type="hidden" id="current_quantity3" name="current_quantity3" value="{{ $quantity3}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                              </div>
-                          </div>
-                          <div class="flex justify-around my-4">
-                            <div class="mr-2"><input type="radio" name="type" value="1">増やす</div>
-                            <div><input type="radio" name="type" value="2" >減らす</div>
-                          </div>
-                           <div class="p-2">
-                              <div class="relative">
-                              <label for="quantity3" class="leading-7 text-sm text-gray-600">数量</label>
-                              <input type="number" id="quantity3" name="quantity3" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                              </div>
-                              <span class="text-sm">0~99の範囲で入力してください</span>
-                            </div>
-                        </div>
-
-                        <div class="border p-2">
-                          <div class="p-2 w-48 ">
-                              <div class="relative">
-                              <label for="current_quantity4" value="{{ $quantity4 }}" >現在の在庫Lサイズ = {{$quantity4}}</label>
-                              <input type="hidden" id="current_quantity4" name="current_quantity4" value="{{ $quantity4}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                              </div>
-                          </div>
-                          <div class="flex justify-around my-4">
-                            <div class="mr-2"><input type="radio" name="type" value="1">増やす</div>
-                            <div><input type="radio" name="type" value="2" >減らす</div>
-                          </div>
-                           <div class="p-2">
-                              <div class="relative">
-                              <label for="quantity4" class="leading-7 text-sm text-gray-600">数量</label>
-                              <input type="number" id="quantity4" name="quantity4" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                              </div>
-                              <span class="text-sm">0~99の範囲で入力してください</span>
-                            </div>
-                        </div>
+                        
                         <div class="p-2 w-1/2 my-10">
                           <div class="relative">
                             <label for="category" class="leading-7 text-sm text-gray-600">ブランド名・カテゴリー</label>
