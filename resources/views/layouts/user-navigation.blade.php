@@ -13,8 +13,18 @@
         <!-- nav - start -->
         <nav class="hidden md:flex gap-12 2xl:ml-16">
             <x-nav-link :href="route('user.products.index')" :active="request()->routeIs('user.index')">
-                トップページ
+                ホーム
             </x-nav-link>
+            <form method="POST" action="{{ route('user.logout') }}">
+              @csrf
+
+              <x-nav-link :href="route('user.logout')"
+                      onclick="event.preventDefault();
+                                  this.closest('form').submit();">
+                  {{ __('Log Out') }}
+              </x-responsive-nav-link>
+          </form>
+            
           
         </nav>
         <!-- nav - end -->

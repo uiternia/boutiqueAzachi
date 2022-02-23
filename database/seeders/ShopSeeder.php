@@ -18,10 +18,18 @@ class ShopSeeder extends Seeder
         DB::table('shops')->insert([
             [
             'owner_id' => 1,
-            'name' => 'BoutiqueAzachi',
+            'name' => 'Testshop1',
             'information' => 'ここにお店の情報が入ります。ここにお店の情報が入ります。ここにお店の情報が入ります。',
             'filename' => 'image1.jpg',
             'is_selling' => true
-            ]]);
+            ],
+            [
+                'owner_id' => 2,
+                'name' => 'Testshop2',
+                'information' => 'ここにお店の情報が入ります。ここにお店の情報が入ります。ここにお店の情報が入ります。',
+                'filename' => 'image1.jpg',
+                'is_selling' => true
+            ]
+        ]);
     }
 }

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Item;
+use App\Models\Stock;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +25,7 @@ class DatabaseSeeder extends Seeder
             StockSeeder::class,
             UserSeeder::class,
         ]);
+            //Item::factory(50)->create();
+            //Stock::factory(50)->create();
     }
 }

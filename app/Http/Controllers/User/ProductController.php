@@ -32,10 +32,11 @@ class ProductController extends Controller
 
         $stocks = DB::table('stocks')->select('item_id',
         DB::raw('sum(quantity4) as quantity4'))
-        ->union($stocks1)->union($stocks2)->union($stocks3)
         ->groupBy('item_id')
-        ->having('quantity4', '>', 1); 
-
+        ->having('quantity4', '>', 1)
+        ->union($stocks1)->union($stocks2)->union($stocks3);
+        
+       
         
                  
     $products = DB::table('items')
@@ -45,9 +46,6 @@ class ProductController extends Controller
         ->join('shops', 'items.shop_id', '=', 'shops.id')
         ->join('item_categories', 'items.item_category_id', '=','item_categories.id')
         ->join('images as image1', 'items.image1', '=', 'image1.id')
-        ->join('images as image2', 'items.image2', '=', 'image2.id')
-        ->join('images as image3', 'items.image3', '=', 'image3.id')
-        ->join('images as image4', 'items.image4', '=', 'image4.id')
         ->where('shops.is_selling', true)
         ->where('items.is_selling', true)
         ->select('items.id as id', 'items.name as name', 'items.price'
@@ -55,6 +53,8 @@ class ProductController extends Controller
         ,'items.information','item_categories.name as category'
         ,'image1.filename as filename')
         ->get();
+
+    
     
 
         return view('user.index',compact('products'));
