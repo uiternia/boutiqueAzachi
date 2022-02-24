@@ -17,7 +17,7 @@
                 <div>
                   <label for="image" class="leading-7 text-sm text-gray-600">商品画像</label>
                 </div>
-                  <input type="file" id="image" name="image" accept="image/png,image/jpeg,image/jpg">
+                  <input type="file" id="image" name="files[][image]" multiple accept="image/png,image/jpeg,image/jpg">
                   </div>
               </div>
                 <div class="flex justify-between p-2 w-full">

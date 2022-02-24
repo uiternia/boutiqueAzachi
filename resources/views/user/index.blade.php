@@ -19,11 +19,12 @@
       
       <!-- product - start -->
       @foreach ($products as $product)
-      <a href="{{route('user.products.show',['product' => $product->id])}}">
+      <div>
+        <a href="{{ route('user.products.show',['product' => $product->id])}}">
         <div class="group h-42 block bg-gray-100 rounded-lg overflow-hidden shadow-lg relative mb-2 lg:mb-3 ">
           <x-thumbnail filename="{{$product->filename ?? ''}}" type="products" />
         </div>
-
+      </a>
         <div class="flex justify-between items-start gap-2 px-2">
           <div class="flex flex-col">
             <a href="#" class="text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100">{{$product->name}}</a>
@@ -34,7 +35,7 @@
             <span class="text-gray-600 lg:text-lg font-bold">{{ $product->price }}<span class="text-sm">円(税込)</span></span>
           </div>
         </div>
-      </a>
+      </div>
       @endforeach
       <!-- product - end -->
 

@@ -4,25 +4,57 @@
 </x-slot>
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="max-w-screen-lg px-4 md:px-8 mx-auto">
-    <div class="grid md:grid-cols-2 gap-8">
+  
       <!-- images - start -->
-      <div class="space-y-4">
-        <div class="bg-gray-100 rounded-lg overflow-hidden relative">
-          <img src="https://images.unsplash.com/flagged/photo-1571366992942-be878c7b10c0?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Himanshu Dewangan" class="w-full h-full object-cover object-center" />
+      <!-- Slider main container -->
+      
+  <div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div class="swiper-slide">
+      @if ($product->imageFirst->filename !== null)
+      <img src="{{ asset('storage/products/' . $product->imageFirst->filename)}}">
+      @else
+      <img src="">
+      @endif
+    </div>
+    <div class="swiper-slide">
+      @if ($product->imageSecond->filename !== null)
+      <img src="{{ asset('storage/products/' . $product->imageSecond->filename)}}">
+      @else
+      <img src="">
+      @endif
+    </div>
+    <div class="swiper-slide">
+      @if ($product->imageThird->filename !== null)
+      <img src="{{ asset('storage/products/' . $product->imageThird->filename)}}">
+      @else
+      <img src="">
+      @endif
+    </div>
+    <div class="swiper-slide">
+      @if ($product->imageFourth->filename !== null)
+      <img src="{{ asset('storage/products/' . $product->imageFourth->filename)}}">
+      @else
+      <img src="">
+      @endif
+    </div>
+   
 
-          <span class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">sale</span>
-        </div>
+    
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-gray-100 rounded-lg overflow-hidden">
-            <img src="https://images.unsplash.com/flagged/photo-1571366992791-2ad2078656cb?auto=format&q=75&fit=crop&w=250" loading="lazy" alt="Photo by Himanshu Dewangan" class="w-full h-full object-cover object-center" />
-          </div>
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 
-          <div class="bg-gray-100 rounded-lg overflow-hidden">
-            <img src="https://images.unsplash.com/flagged/photo-1571366992968-15b65708ee76?auto=format&q=75&fit=crop&w=250" loading="lazy" alt="Photo by Himanshu Dewangan" class="w-full h-full object-cover object-center" />
-          </div>
-        </div>
-      </div>
+  <!-- If we need scrollbar -->
+  <div class="swiper-scrollbar"></div>
+
+</div>
       <!-- images - end -->
 
       <!-- content - start -->
@@ -47,6 +79,7 @@
         <!-- price - end -->
 
         <!-- shipping notice - start -->
+        <div class="md:flex justify-between">
         <div class="flex items-center text-gray-500 gap-2 mb-6">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -67,6 +100,7 @@
             </svg>
           </a>
         </div>
+      </div>
         <!-- buttons - end -->
 
         <!-- description - start -->
@@ -82,7 +116,7 @@
       <!-- content - end -->
     </div>
   </div>
-</div>
+
 
 
 <footer class="bg-white max-w-screen-2xl px-4 md:px-8 mx-auto">
