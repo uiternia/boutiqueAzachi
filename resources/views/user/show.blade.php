@@ -40,6 +40,7 @@
       <img src="">
       @endif
     </div>
+
    
 
     
@@ -60,6 +61,8 @@
       <!-- content - start -->
       <div class="md:py-8">
         <!-- name - start -->
+        <div class="md:flex justify-around items-center">
+          <div class="flex-1 sm:flex-none">
         <div class="mb-2 md:mb-3">
           <span class="inline-block text-gray-500 mb-0.5">{{$product->category->name}}</span>
           <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold">{{$product->name}}</h2>
@@ -88,11 +91,21 @@
 
           <span class="text-sm">1~2日で発送</span>
         </div>
+      </div>
+    </div>
         <!-- shipping notice - end -->
 
         <!-- buttons - start -->
         <div class="flex gap-2.5">
-          <a href="#" class="inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Add to cart</a>
+          <div class="items-center">
+            <span>数量</span>
+          <select name="quantity" class="rounded  border appearance-none border-gray-300  focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base">
+            @for($i = 1; $i <= $quantity; $i++)
+            <option value="{{$i}}">{{$i}}</option>
+            @endfor
+           </select>
+          </div>
+          <a href="#" class="inline-block flex-1 md:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Add to cart</a>
 
           <a href="#" class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -115,9 +128,22 @@
       </div>
       <!-- content - end -->
     </div>
+    <div class="border-t border-green-300 my-10"></div>
+  <div class="mb-4 text-center"><h1 class="text-gray-800 text-lg font-semibold mb-3">このアイテムを販売しているショップ</h1></div>
+  <div class="mb-4 text-center">{{ $product->shop->name }}</div>
+  <div class="mb-4 text-center">
+    @if($product->shop->filename !== null)
+    <img class="mx-auto w-40 h-40 object-cover rounded-full" src="{{ asset('storage/shops/' . $product->shop->filename)}}">
+    @else
+    <img src="">
+    @endif
+  </div>
+  {{--のちにショップの詳細画面を作成し、つなげたい--}}
+    <div class="mb-4 text-center">
+      <button type="button" class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">このショップの詳細を見る</button></div>
   </div>
 
-
+  
 
 <footer class="bg-white max-w-screen-2xl px-4 md:px-8 mx-auto">
 <div class="text-gray-400 text-sm text-center border-t py-8">© boutique Azachi</div>

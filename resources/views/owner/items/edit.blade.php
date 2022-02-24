@@ -111,14 +111,13 @@
                         </div>
                         {{--アイテム新規作成時に追加した画像を最初から選択した状態にしたい--}}
                         <div class="my-5">アイテム画像を追加してください</div>
-                      <x-select-image :images="$images" name="image1" />
-                      <x-select-image :images="$images" name="image2" />
-                      <x-select-image :images="$images" name="image3" />
-                      <x-select-image :images="$images" name="image4" />
-                      
-                        <div class="hidden">
-                        <x-select-image :images="$images" name="image5"/>
-                       </div>
+                        <x-select-image :images="$images" currentId="{{ $item->image1 }}" currentImage="{{ $item->imageFirst->filename ?? '' }}" name="image1"/>
+                        <x-select-image :images="$images" currentId="{{ $item->image2 }}" currentImage="{{ $item->imageSecond->filename ?? '' }}" name="image2"/>
+                        <x-select-image :images="$images" currentId="{{ $item->image3 }}" currentImage="{{ $item->imageThird->filename ?? '' }}" name="image3"/>
+                        <x-select-image :images="$images" currentId="{{ $item->image4 }}" currentImage="{{ $item->imageFourth->filename ?? '' }}" name="image4"/>
+                          <div class="hidden">
+                          <x-select-image :images="$images" name="image5"/>
+                          </div>
                         <div class="flex justify-around my-4">
                           <div class="mr-2"><input type="radio" name="is_selling" value="1" @if($item->is_selling = true){ checked } @endif>販売する</div>
                           <div><input type="radio" name="is_selling" value="0" @if($item->is_selling = false){ checked } @endif>販売停止</div>
@@ -148,7 +147,7 @@
  images.forEach(image => { 
  image.addEventListener('click', function(e){ 
  const imageName = e.target.dataset.id.substr(0, 6) 
- const imageId = e.target.dataset.id.replace(imageName + '_', '') // 6文字カット
+ const imageId = e.target.dataset.id.replace(imageName + '_', '') 
  const imageFile = e.target.dataset.file
  const imagePath = e.target.dataset.path
  const modal = e.target.dataset.modal
