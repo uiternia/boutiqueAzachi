@@ -97,21 +97,34 @@
 
         <!-- buttons - start -->
         <div class="flex gap-2.5">
+          <form method="post" action="{{ route('user.cart.add')}}">
+            <div class="flex">
           <div class="items-center">
             <span>数量</span>
-          <select name="quantity" class="rounded  border appearance-none border-gray-300  focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base">
+          <select name="quantity" class="rounded mr-2 border appearance-none border-gray-300  focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base">
             @for($i = 1; $i <= $quantity; $i++)
             <option value="{{$i}}">{{$i}}</option>
             @endfor
            </select>
           </div>
-          <a href="#" class="inline-block flex-1 md:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Add to cart</a>
-
-          <a href="#" class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">
+            @csrf
+            <div>
+          <button class="inline-block flex-1 md:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Add to cart</button>
+          <input type="hidden" name="product_id" value="{{$product->id}}">
+            </div>
+          </div>
+          </form>
+          <form method="post" action="{{route('user.favorite.add')}}">
+            @csrf
+          <div>
+          <button class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
-          </a>
+          </button>
+          <input type="hidden" name="product_id" value="{{$product->id}}">
+        </div>
+      </form>
         </div>
       </div>
         <!-- buttons - end -->
