@@ -31,16 +31,16 @@
   
         <!-- buttons - start -->
         <div class="flex sm:border-l border-r divide-x">
-          <a href="#" class="w-12 sm:w-20 md:w-24 h-12 sm:h-20 md:h-24 flex flex-col justify-center items-center hover:bg-gray-100 active:bg-gray-200 transition duration-100 gap-1.5">
+          <a href="{{route('user.favorite.view')}}" class="w-12 sm:w-20 md:w-24 h-12 sm:h-20 md:h-24 flex flex-col justify-center items-center hover:bg-gray-100 active:bg-gray-200 transition duration-100 gap-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               
             </svg>
   
-            <span class="hidden sm:block text-gray-500 text-xs font-semibold">Wishlist</span>
+            <span class="hidden sm:block text-gray-500 text-xs font-semibold">Favorite</span>
           </a>
           
-          <a href="#" class="w-12 sm:w-20 md:w-24 h-12 sm:h-20 md:h-24 flex flex-col justify-center items-center hover:bg-gray-100 active:bg-gray-200 transition duration-100 gap-1.5">
+          <a href="{{route('user.cart.index')}}" class="w-12 sm:w-20 md:w-24 h-12 sm:h-20 md:h-24 flex flex-col justify-center items-center hover:bg-gray-100 active:bg-gray-200 transition duration-100 gap-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
@@ -122,11 +122,23 @@
   
           </div>
         </div>
-        <div class="w-64 h-12 flex border rounded-lg overflow-hidden divide-x">
-          <a href="#" class="w-1/3 flex justify-center items-center hover:bg-gray-100 active:bg-gray-200 text-gray-500 transition duration-100">brand1</a>{{--ソートボタン--}}
-          <a href="#" class="w-1/3 flex justify-center items-center hover:bg-gray-100 active:bg-gray-200 text-gray-500 transition duration-100">brand2</a>
-          <a href="#" class="w-1/3 flex justify-center items-center hover:bg-gray-100 active:bg-gray-200 text-gray-500 transition duration-100">brand3</a>
-        </div>
+        <div>
+        <button class="hover:text-gray-500 text-gray-600 bg-white py-3.5 px-3 rounded-sm flex flex-row justify-center items-center space-x-3 dark:bg-gray-800 dark:bg-gray-700">
+          <svg class="dark:text-gray-300" width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 14.6452V9.33875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4 6.30645V1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 14.6452V7.82263" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 4.79032V1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M20 14.6452V10.8549" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M20 7.82258V1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1 9.33875H7" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 4.79028H15" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M17 10.8549H23" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+    
+          <p class="hidden md:block text-sm leading-none dark:text-gray-300">Filters</p>
+        </button>
+      </div>
   
         <!-- social - start -->
         

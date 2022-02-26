@@ -39,6 +39,8 @@
           
           <td class="p-4 px-6 text-center whitespace-nowrap">{{$product->pivot->quantity}}</td>
           <td class="p-4 px-6 text-center whitespace-nowrap">{{ number_format($product->pivot->quantity*$product->price)}}<span>円</span></td>
+          <form method="post" action="{{route('user.cart.delete',['item' => $product->id])}}">
+            @csrf
           <td class="p-4 px-6 text-center whitespace-nowrap">
             <button>
               <svg
@@ -57,6 +59,7 @@
               </svg>
             </button>
           </td>
+        </form>
         </tr>
       </tbody>
     </table>

@@ -67,8 +67,15 @@ class Item extends Model
 
      public function users()
       {
-          return $this->belongsToMany(User::class,'carts')
+          return $this->belongsToMany(User::class,'carts','id')
           ->withPivot(['id', 'quantity']);
-      }    
+      }
+
+      public function user_favorites()
+      {
+          return $this->belongsToMany(User::class,'carts','id')
+          ->withPivot('id');
+      }
+      
 
 }

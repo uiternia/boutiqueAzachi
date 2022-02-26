@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::middleware('auth:users')->group(function(){
 Route::get('/',[ProductController::class,'index'])->name('products.index');
 Route::get('show/{product}',[ProductController::class,'show'])->name('products.show');
+Route::get('shop/{shop}',[ProductController::class,'shop'])->name('products.shop');
 });
 
 Route::prefix('cart')->middleware('auth:users')->group(function(){
@@ -33,9 +34,9 @@ Route::prefix('cart')->middleware('auth:users')->group(function(){
 });
 
 Route::prefix('favorite')->middleware('auth:users')->group(function(){
-    Route::get('/',[FavoriteController::class,'index'])->name('favorite.index');
+    Route::get('/',[FavoriteController::class,'view'])->name('favorite.view');
     Route::post('add',[FavoriteController::Class,'add'])->name('favorite.add');
-    Route::post('delete/{item}',[FavoriteController::Class,'delete'])->name('favorite.delete');
+    Route::post('delete/{product}',[FavoriteController::Class,'delete'])->name('favorite.delete');
 });
 
 

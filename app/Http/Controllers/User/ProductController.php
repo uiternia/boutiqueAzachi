@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\Stock;
+use App\Models\Shop;
 
 class ProductController extends Controller
 {
@@ -51,5 +52,13 @@ class ProductController extends Controller
             $quantity = 9;
         } 
         return view('user.show',compact('product','quantity'));
+    }
+
+    public function shop($id){
+
+        $product = Item::findOrFail($id);
+
+        return view('user.shop',compact('product'));
+        
     }
 }

@@ -97,7 +97,9 @@
 
         <!-- buttons - start -->
         <div class="flex gap-2.5">
+          
           <form method="post" action="{{ route('user.cart.add')}}">
+            @csrf
             <div class="flex">
           <div class="items-center">
             <span>数量</span>
@@ -107,24 +109,26 @@
             @endfor
            </select>
           </div>
-            @csrf
             <div>
           <button class="inline-block flex-1 md:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Add to cart</button>
           <input type="hidden" name="product_id" value="{{$product->id}}">
             </div>
           </div>
           </form>
-          <form method="post" action="{{route('user.favorite.add')}}">
+        
+        
+          <form method="post" action="{{ route('user.favorite.add')}}">
             @csrf
           <div>
-          <button class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">
+          <button  class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </button>
-          <input type="hidden" name="product_id" value="{{$product->id}}">
+          <input type="hidden" name="item_id" value="{{$product->id}}">
         </div>
       </form>
+    
         </div>
       </div>
         <!-- buttons - end -->
@@ -153,7 +157,9 @@
   </div>
   {{--のちにショップの詳細画面を作成し、つなげたい--}}
     <div class="mb-4 text-center">
-      <button type="button" class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">このショップの詳細を見る</button></div>
+      <a href="{{ route('user.products.shop',['shop' => $product->id])}}">
+      <button type="button" class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">このショップの詳細を見る</button>
+    </div>
   </div>
 
   
@@ -161,5 +167,6 @@
 <footer class="bg-white max-w-screen-2xl px-4 md:px-8 mx-auto">
 <div class="text-gray-400 text-sm text-center border-t py-8">© boutique Azachi</div>
   </footer>
+
  
 </x-app-layout>
