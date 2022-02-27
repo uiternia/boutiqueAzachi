@@ -11,4 +11,5 @@ class Common
     'add' => self::ITEM_ADD,
     'reduce' => self::ITEM_REDUCE,
   ];
+
 }

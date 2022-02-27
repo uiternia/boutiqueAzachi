@@ -67,7 +67,7 @@ class Item extends Model
 
      public function users()
       {
-          return $this->belongsToMany(User::class,'carts','id')
+          return $this->belongsToMany(User::class,'carts')
           ->withPivot(['id', 'quantity']);
       }
 

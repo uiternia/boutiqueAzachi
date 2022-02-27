@@ -31,13 +31,17 @@ Route::prefix('cart')->middleware('auth:users')->group(function(){
     Route::get('/',[CartController::class,'index'])->name('cart.index');
     Route::post('add',[CartController::Class,'add'])->name('cart.add');
     Route::post('delete/{item}',[CartController::Class,'delete'])->name('cart.delete');
+    Route::get('checkout',[CartController::Class,'checkout'])->name('cart.checkout');
+    Route::get('success',[CartController::class,'success'])->name('cart.success');
+    Route::get('cancel',[CartController::class,'cancel'])->name('cart.cancel');
 });
 
-Route::prefix('favorite')->middleware('auth:users')->group(function(){
-    Route::get('/',[FavoriteController::class,'view'])->name('favorite.view');
-    Route::post('add',[FavoriteController::Class,'add'])->name('favorite.add');
-    Route::post('delete/{product}',[FavoriteController::Class,'delete'])->name('favorite.delete');
-});
+// Route::prefix('favorite')->middleware('auth:users')->group(function(){
+//     Route::get('/',[FavoriteController::class,'view'])->name('favorite.view');
+//     Route::post('add',[FavoriteController::Class,'add'])->name('favorite.add');
+//     Route::post('delete/{product}',[FavoriteController::Class,'delete'])->name('favorite.delete');
+// });
+
 
 
 require __DIR__.'/auth.php';

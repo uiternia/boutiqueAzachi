@@ -86,6 +86,7 @@
     </div>
     <div class="mt-4">
       <button
+        onclick="location.href='{{ route('user.cart.checkout')}}'"
         class="
           w-full
           py-2

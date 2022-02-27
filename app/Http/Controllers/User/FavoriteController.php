@@ -20,6 +20,7 @@ class FavoriteController extends Controller
 
         return view('user.favorite',
         compact('items'));
+    
     }
 
     public function add(FavoriteRequest $request)
@@ -40,4 +41,4 @@ class FavoriteController extends Controller
             ->delete();
             return redirect()->route('user.favorite.view');
         }
-}
+} 

@@ -139,7 +139,6 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
         $quantity = Stock::where('item_id',$item->id)->sum('quantity');
        
-        //if文を関数化をし見やすくしたい
        if($request->current_quantity !== $quantity )
         {
             $id = $request->route()->parameter('item');
@@ -163,10 +162,10 @@ class ItemController extends Controller
 
                 //マジックナンバー回避
 
-                if($request->type === '1'){
+                if($request->type === \Constant::ITEM_LIST['add']){
                     $newQuantity = $request->quantity;
                 }
-                if($request->type === '2'){
+                if($request->type === \Constant::ITEM_LIST['reduce']){
                     $newQuantity = $request->quantity * -1;
                 }
                 
