@@ -26,8 +26,9 @@ class ItemSeeder extends Seeder
             'item_category_id' =>1,
             'image1' => 1,
             'image2' => 2,
-            'image3' => 1,
-            'image4' => 2,
+            'image3' => 4,
+            'image4' => 5,
+            
         ],
         [
             'name' => 'コート',

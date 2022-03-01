@@ -3,9 +3,89 @@
     
 </x-slot>
 
-
 <!-- product-grid - start -->
 <div class="bg-white py-6 sm:py-8 lg:py-12">
+  <form method="get" action="{{route('user.products.index')}}">
+<div class="flex justify-around items-center mb-10">
+  <div>
+      <span class="text-sm">表示順</span><br>
+    <div>
+      <select id="sort" name="sort" class="mr-4"> 
+        <option value="{{ \Constant::SORT_ORDER['recommend']}}"
+            @if(\Request::get('sort') === \Constant::SORT_ORDER['recommend'] ) 
+            selected 
+            @endif>オススメ順
+        </option>
+        <option value="{{ \Constant::SORT_ORDER['higher']}}" 
+            @if(\Request::get('sort') === \Constant::SORT_ORDER['higher'] ) 
+            selected 
+            @endif>料金の高い順
+        </option>
+        <option value="{{ \Constant::SORT_ORDER['lower']}}"
+            @if(\Request::get('sort') === \Constant::SORT_ORDER['lower'] ) 
+            selected 
+            @endif>料金の安い順    
+        </option>
+        <option value="{{ \Constant::SORT_ORDER['new']}}"
+            @if(\Request::get('sort') === \Constant::SORT_ORDER['new'] ) 
+            selected 
+            @endif>新しい順
+        </option>
+        <option value="{{ \Constant::SORT_ORDER['older']}}"
+            @if(\Request::get('sort') === \Constant::SORT_ORDER['older'] ) 
+            selected 
+            @endif>古い順
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <span class="text-sm">ブランド・カテゴリー</span><br>
+    <div class="lg:flex items-center">
+      <select name="clothes">
+          <option value="0" @if(\Request::get('category') === '0') selected @endif>全て</option>
+          @foreach($categories as $category)
+          <optgroup label="{{ $category->name }}">
+           @foreach($category->item as $item)
+             <option value="{{ $item->id}}" @if(\Request::get('clothes') == $item->id) selected @endif >
+              {{ $item->name }}
+             </option>
+           @endforeach
+         @endforeach  
+      </select>
+      <button class="ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">絞り込む</button>
+    </div>
+  </div>
+
+    {{-- <div>
+      <span class="text-sm">ブランド名</span><br>
+      <select name="category" id="category">
+        <span class="text-sm">表示順</span><br>
+        <option value="0" @if(\Request::get('category') === '0') selected @endif>全て</option>
+          @foreach($categories as $category)
+          <option value="{{ $category->id }}">
+          {{ $category->name }}
+          </option>
+          @endforeach
+      </select>
+    </div> --}}
+
+    {{-- <div>
+      <span class="text-sm">カテゴリー</span><br>
+      <select name="clothes" id="clothes">
+        <span class="text-sm">表示順</span><br>
+        <option value="0" @if(\Request::get('clothes') === '0') selected @endif>全て</option>
+          @foreach($category->item as $item)
+          <option value="{{ $item->id }}"@if(\Request::get('clothes') == $item->id) selected @endif>
+          {{ $item->name }}
+          </option>
+          @endforeach
+      </select>
+    </div> --}}
+  </div>
+</form>
+  
   <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
     <!-- text - start -->
     <div class="mb-10 md:mb-16">
@@ -20,7 +100,7 @@
       <!-- product - start -->
       @foreach ($products as $product)
       <div>
-        <a href="{{ route('user.products.show',['product' => $product->id])}}">
+      <a href="{{ route('user.products.show',['product' => $product->id])}}">
         <div class="group h-42 block bg-gray-100 rounded-lg overflow-hidden shadow-lg relative mb-2 lg:mb-3 ">
           <x-thumbnail filename="{{$product->filename ?? ''}}" type="products" />
         </div>
@@ -38,74 +118,18 @@
       </div>
       @endforeach
       <!-- product - end -->
-
-      
     </div>
   </div>
 </div>
-
-
-<!-- collections - start -->
-<div class="bg-white py-6 sm:py-8 lg:py-12">
-  <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
-    <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-8 md:mb-12">Collections</h2>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-      <!-- product - start -->
-      <div>
-        <a href="#" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-
-          <div class="w-full flex flex-col bg-white text-center rounded-lg relative p-4">
-            <span class="text-gray-500">Men</span>
-            <span class="text-gray-800 text-lg lg:text-xl font-bold">Business Causual</span>
-          </div>
-        </a>
-      </div>
-      <!-- product - end -->
-
-      <!-- product - start -->
-      <div>
-        <a href="#" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-          <img src="https://images.unsplash.com/photo-1603344797033-f0f4f587ab60?auto=format&q=75&fit=crop&crop=top&w=600&h=700" loading="lazy" alt="Photo by engin akyurt" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-
-          <div class="w-full flex flex-col bg-white text-center rounded-lg relative p-4">
-            <span class="text-gray-500">Women</span>
-            <span class="text-gray-800 text-lg lg:text-xl font-bold">Summer Season</span>
-          </div>
-        </a>
-      </div>
-      <!-- product - end -->
-
-      <!-- product - start -->
-      <div>
-        <a href="#" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-          <img src="https://images.unsplash.com/photo-1552668693-d0738e00eca8?auto=format&q=75&fit=crop&crop=top&w=600&h=700" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-
-          <div class="w-full flex flex-col bg-white text-center rounded-lg relative p-4">
-            <span class="text-gray-500">Men</span>
-            <span class="text-gray-800 text-lg lg:text-xl font-bold">Streetwear</span>
-          </div>
-        </a>
-      </div>
-      <!-- product - end -->
-
-      <!-- product - start -->
-      <div>
-        <a href="#" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-          <img src="https://images.unsplash.com/photo-1560269999-cef6ebd23ad3?auto=format&q=75&fit=crop&w=600&h=700" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-
-          <div class="w-full flex flex-col bg-white text-center rounded-lg relative p-4">
-            <span class="text-gray-500">Women</span>
-            <span class="text-gray-800 text-lg lg:text-xl font-bold">Sale</span>
-          </div>
-        </a>
-      </div>
-      <!-- product - end -->
-    </div>
-  </div>
+<div class="bg-white">
+  {{$products->appends([
+  'sort' => Request::get('sort'),
+  'clothes' => Request::get('clothes'),
+])->links()}}
 </div>
-<!-- collections - end -->
+
+
+
 
 
 
@@ -165,6 +189,11 @@
   </footer>
 </div>
 <!-- footer - end -->
+<script>
+  const select = document.getElementById('sort')
+  select.addEventListener('change', function(){
+  this.form.submit()
+  })
+ </script>
 
- 
 </x-app-layout>

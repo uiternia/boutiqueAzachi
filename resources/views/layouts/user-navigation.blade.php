@@ -119,36 +119,14 @@
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
               </svg>
             </a>
-  
           </div>
         </div>
-        <div>
-        <button class="hover:text-gray-500 text-gray-600 bg-white py-3.5 px-3 rounded-sm flex flex-row justify-center items-center space-x-3 dark:bg-gray-800 dark:bg-gray-700">
-          <svg class="dark:text-gray-300" width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 14.6452V9.33875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4 6.30645V1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M12 14.6452V7.82263" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M12 4.79032V1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M20 14.6452V10.8549" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M20 7.82258V1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M1 9.33875H7" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M9 4.79028H15" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M17 10.8549H23" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-    
-          <p class="hidden md:block text-sm leading-none dark:text-gray-300">Filters</p>
-        </button>
-      </div>
-  
-        <!-- social - start -->
+       
+
         
-      
+          
       </div>
     </section>
   </div>
-
-    
-
-   
-    
+  
 </nav>

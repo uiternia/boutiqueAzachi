@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\Stock;
+use App\Models\BrandCategory;
+use App\Models\ItemCategory;
 use App\Models\Shop;
 
 class ProductController extends Controller
@@ -14,32 +16,32 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth:users');
+
+        $this->middleware(function ($request, $next) {
+
+            $id = $request->route()->parameter('product'); 
+            if(!is_null($id)){ 
+            $itemId = Item::availableProducts()->where('items.id', $id)->exists();
+                if(!$itemId){ 
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $stocks = DB::table('stocks')->select('item_id',
-        DB::raw('sum(quantity) as quantity'))
-        ->groupBy('item_id')
-        ->having('quantity', '>', 1);
-        
-                 
-    $products = DB::table('items')
-    ->joinSub($stocks,'stock',function($join){
-        $join->on('items.id', '=', 'stock.item_id');
-    })
-        ->join('shops', 'items.shop_id', '=', 'shops.id')
-        ->join('item_categories', 'items.item_category_id', '=','item_categories.id')
-        ->join('images as image1', 'items.image1', '=', 'image1.id')
-        ->where('shops.is_selling', true)
-        ->where('items.is_selling', true)
-        ->select('items.id as id', 'items.name as name', 'items.price'
-        ,'items.sort_order as sort_order'
-        ,'items.information','item_categories.name as category'
-        ,'image1.filename as filename')
+        $categories = BrandCategory::with('item')
         ->get();
 
-        return view('user.index',compact('products'));
+        $products = Item::availableProducts()
+        ->selectCategory($request->category ?? '0')
+        ->clothesType($request->clothes ?? '0')
+        ->sortOrder($request->sort)
+        ->paginate(16);
+
+        return view('user.index',compact('products','categories'));
     }
 
     public function show($id){

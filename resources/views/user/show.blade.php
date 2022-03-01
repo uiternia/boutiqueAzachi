@@ -20,21 +20,21 @@
       @endif
     </div>
     <div class="swiper-slide">
-      @if ($product->imageSecond->filename !== null)
+      @if (!empty($product->imageSecond->filename))
       <img src="{{ asset('storage/products/' . $product->imageSecond->filename)}}">
       @else
       <img src="">
       @endif
     </div>
     <div class="swiper-slide">
-      @if ($product->imageThird->filename !== null)
+      @if (!empty($product->imageThird->filename))
       <img src="{{ asset('storage/products/' . $product->imageThird->filename)}}">
       @else
       <img src="">
       @endif
     </div>
     <div class="swiper-slide">
-      @if ($product->imageFourth->filename !== null)
+      @if (!empty($product->imageFourth->filename))
       <img src="{{ asset('storage/products/' . $product->imageFourth->filename)}}">
       @else
       <img src="">
