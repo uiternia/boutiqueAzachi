@@ -12,9 +12,14 @@
   
         <!-- nav - start -->
         <nav class="hidden md:flex gap-12 2xl:ml-16">
-            <x-nav-link :href="route('user.products.index')" :active="request()->routeIs('user.index')">
+            <x-nav-link :href="route('user.products.index')" :active="request()->routeIs('user.products.index')">
                 ホーム
             </x-nav-link>
+
+            <x-nav-link :href="route('user.contact.index')" :active="request()->routeIs('user.contact.index')">
+              お問い合わせ
+          </x-nav-link>
+
             <form method="POST" action="{{ route('user.logout') }}">
               @csrf
 
@@ -65,6 +70,11 @@
             <x-responsive-nav-link :href="route('user.products.index')" :active="request()->routeIs('user.index')">
                 ホーム
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('user.contact.index')" :active="request()->routeIs('user.index')">
+             お問い合わせ
+          </x-responsive-nav-link>
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -122,7 +132,7 @@
           </div>
         </div>
        
-
+        <x-flash-message status="session('status')" />
         
           
       </div>

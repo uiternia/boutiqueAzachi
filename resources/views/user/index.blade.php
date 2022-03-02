@@ -176,7 +176,7 @@
 
         <nav class="flex flex-col gap-4">
           <div>
-            <a href="#" class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">お問い合わせ</a>
+            <a href="{{route('user.contact.index')}}" class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">お問い合わせ</a>
           </div>
 
           

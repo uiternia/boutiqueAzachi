@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\ItemController;
 use App\Models\Cart;
@@ -34,6 +35,11 @@ Route::prefix('cart')->middleware('auth:users')->group(function(){
     Route::get('checkout',[CartController::Class,'checkout'])->name('cart.checkout');
     Route::get('success',[CartController::class,'success'])->name('cart.success');
     Route::get('cancel',[CartController::class,'cancel'])->name('cart.cancel');
+});
+
+Route::prefix('contact')->middleware('auth:users')->group(function(){
+    Route::get('/',[ContactController::class,'index'])->name('contact.index');
+    Route::post('thanks',[ContactController::Class,'thanks'])->name('contacts.thanks');
 });
 
 // Route::prefix('favorite')->middleware('auth:users')->group(function(){
