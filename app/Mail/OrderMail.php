@@ -20,11 +20,7 @@ class OrderMail extends Mailable
         $this->user = $user;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+    
     public function build()
     {
         return $this->view('emails.order')

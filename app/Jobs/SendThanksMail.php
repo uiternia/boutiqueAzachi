@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ThanksMail;
+use App\Mail\TestMail;
 
 class SendThanksMail implements ShouldQueue
 {
@@ -20,18 +21,14 @@ class SendThanksMail implements ShouldQueue
 
     public function __construct($products,$user)
     {
-        $this->products = $products;
-        $this->user = $user;
-    }
+         $this->products = $products;
+         $this->user = $user;
+     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
+     
     public function handle()
     {
         Mail::to($this->user)
-        ->send(new ThanksMail($this->products,$this->user));
+        ->send(new ThanksMail($this->products, $this->user));
     }
 }

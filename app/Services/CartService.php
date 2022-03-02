@@ -2,14 +2,13 @@
 
 namespace App\Services;
 use App\Models\Item;
-use App\models\Cart;
+use App\Models\Cart;
 
 class CartService
 {
   public static function getItemsInCart($items)
   {
     $products = [];
-
     foreach($items as $item)
     {
       $p = Item::findOrFail($item->item_id);
@@ -24,10 +23,12 @@ class CartService
       $quantity = Cart::where('item_id',$item->item_id)
       ->select('quantity')->get()->toArray();
 
+
       $result = array_merge($product[0],$ownerInfo,$quantity[0]);
 
-
+    
       array_push($products, $result);
+  
     }
     return $products;
   }

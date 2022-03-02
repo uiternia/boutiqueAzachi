@@ -12,7 +12,7 @@ class ThanksMail extends Mailable
     use Queueable, SerializesModels;
 
     public $products;
-    public $users;
+    public $user;
 
     public function __construct($products,$user)
     {
