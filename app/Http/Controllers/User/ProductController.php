@@ -63,4 +63,9 @@ class ProductController extends Controller
         return view('user.shop',compact('product'));
         
     }
+    public function information(){
+
+        return view('user.information');
+        
+    }
 }

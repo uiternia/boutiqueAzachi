@@ -3,13 +3,13 @@
     
 </x-slot>
 
-
 <div class="container p-8 mx-auto mt-12">
   <div class="w-full overflow-x-auto">
     <div class="my-2">
       <h3 class="text-xl font-bold tracking-wider">お気に入り一覧</h3>
     </div>
-    @foreach ($items as $item)
+  </div>まだ未実装です。申し訳ないです。</div>
+    {{-- @foreach ($favorites as $favorite)
     <table class="w-full shadow-inner">
       <thead>
         <tr class="bg-gray-100">
@@ -63,7 +63,7 @@
         </tr>
       </tbody>
     </table>
-    @endforeach
+    @endforeach --}}
     
   </div>
 </div>

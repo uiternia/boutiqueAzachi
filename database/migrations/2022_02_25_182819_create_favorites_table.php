@@ -24,6 +24,8 @@ class CreateFavoritesTable extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();
+            $table->unique(['user_id','item_id']);
+
         });
     }
 

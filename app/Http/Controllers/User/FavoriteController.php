@@ -15,30 +15,30 @@ class FavoriteController extends Controller
 {
     public function view()
     {
-        $user = User::findOrFail(Auth::id());
-        $items = $user->items;
 
-        return view('user.favorite',
-        compact('items'));
-    
-    }
-
-    public function add(FavoriteRequest $request)
-    {
-            Favorite::create([
-                'item_id' => $request->item_id,
-                'user_id' => Auth::id(),
-            ]);
+        $favorites = Favorite::where('user_id',Auth::id());
         
 
-        return redirect()->route('user.favorite.view');
+        return view('user.favorite');
     }
 
-    public function delete($id)
+    public function store(Request $request)
+    {
+       Favorite::create([
+           'item_id' => $request->product_id,
+           'user_id' => Auth::id(),
+       ]);
+        
+
+        return back();
+    }
+
+    public function delete($itemId)
         {
-            Favorite::where('item_id',$id)
-            ->where('user_id',Auth::id())
-            ->delete();
-            return redirect()->route('user.favorite.view');
+            $user = User::findOrFail(Auth::id());
+            if($user->is_favorite($itemId)){
+                $user->favorite_items()->detach($itemId);
+            }
+            return back();
         }
 } 

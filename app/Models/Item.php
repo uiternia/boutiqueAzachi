@@ -74,8 +74,7 @@ class Item extends Model
 
       public function user_favorites()
       {
-          return $this->belongsToMany(User::class,'carts','id')
-          ->withPivot('id');
+          return $this->belongsToMany(User::class,'favorites','item_id','user_id')->withTimestamps();
       }
 
       public function scopeAvailableProducts($query)

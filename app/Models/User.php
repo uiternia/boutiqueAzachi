@@ -52,8 +52,7 @@ class User extends Authenticatable
 
      public function item_favorites()
     {
-        return $this->belongsToMany(Favorite::class,'favorites','id')
-        ->withPivot('id');
+        return $this->belongsToMany(Item::class,'favorites','user_id','item_id')->withTimestamps();
     }
 
 
