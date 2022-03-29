@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.welcome');
 });
+
+Route::middleware('auth:users')->group(function(){
+Route::get('/',[ProductController::class,'index'])->name('products.index');
+Route::get('show/{Product}',[ProductController::class,'show'])->name('products.show');
+});
+
+require __DIR__.'/auth.php';
+
