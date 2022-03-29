@@ -52,6 +52,14 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('user.register'))
+                            <a href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">登録がまだお済みでない方はこちら</a>
+                @endif
+            </div>
+
         </form>
     </x-auth-card>
 </x-guest-layout>
+
