@@ -4,7 +4,8 @@
   if($name === 'image3'){ $modal = 'modal-3' ;}
   if($name === 'image4'){ $modal = 'modal-4' ;}
   if($name === 'image5'){ $modal = 'modal-5' ;}
-
+  $cImage = $currentImage ?? '' ;
+  $cId = $currentId ?? '' ;
   
 @endphp
 <div class="modal micromodal-slide" id="{{ $modal }}" aria-hidden="true">
@@ -18,7 +19,7 @@
       </header>
       <main class="modal__content" id="{{ $modal }}-content">
         <div class="flex flex-wrap">
-          @foreach ($images as $image )
+          @foreach ($images as $image)
               <div class="w-1/4 p-2 md:p-4">
               <div class="border rounded-md p-2 md:p-4">
                 <img class="image" data-id="{{ $name }}_{{ $image->id }}" 
@@ -26,7 +27,6 @@
                 data-path="{{ asset('storage/products/') }}"
                 data-modal="{{ $modal }}"
                 src="{{ asset('storage/products/' . $image->filename)}}">
-                <div class="text-gray-700">{{ $image->title }}</div>
               </div>
               </div>
             @endforeach
@@ -44,7 +44,7 @@
 <div class="flex justify-around items-center mb-4">
   <a class="w-32 py-2 px-2 bg-gray-200" data-micromodal-trigger="{{ $modal }}" href='javascript:;'>画像選択</a>
   <div class="w-1/4">
-    <img id="{{ $name }}_thumbnail" src="">
+    <img id="{{ $name }}_thumbnail" @if($cImage) src="{{ asset('storage/products/' . $cImage)}}" @else src="" @endif src="">
   </div>
 </div>
-<input id="{{ $name }}_hidden" type="hidden" name="{{ $name }}" value="">
+<input id="{{ $name }}_hidden" type="hidden" name="{{ $name }}" value="{{$cId}}">

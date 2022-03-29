@@ -48,19 +48,20 @@ class ImageController extends Controller
 
     public function store(UploadImageRequest $request)
     {
-        $imageFile = $request->image;
-        if(!is_null($imageFile) && $imageFile->isValid())
-        {
-            $fileNameToStore = ImageService::upload($imageFile,'products');
+        $imageFiles = $request->file('files');
+        if(!is_null($imageFiles)){
+            foreach($imageFiles as $imageFile){
+                $fileNameToStore = ImageService::upload($imageFile, 'products');
+                Image::create([
+                    'owner_id' => Auth::id(),
+                    'filename' => $fileNameToStore
+                ]);
+            }
         }
-        image::create([
-            'owner_id' => Auth::id(),
-            'filename' => $fileNameToStore,
-        ]);
-        
-        return redirect()->route('owner.images.index')
-        ->with(['message' => '商品用画像を登録しました。',
-                'status' => 'success']);
+
+        return redirect()
+                    ->route('owner.images.index')
+                    ->with(['message' => '画像登録を実施しました。','status' => 'success']);
     }
 
     public function edit($id)
@@ -72,17 +73,13 @@ class ImageController extends Controller
 
     public function update(UploadImageRequest $request, $id)
     {
-        $image = Image::findOrFail($id);
-        $imageFile = $request->image;
-        if(!is_null($imageFile) && $imageFile->isValid())
-        {
-            $fileNameToStore = ImageService::upload($imageFile,'products');
-        }
-        $image->filename = $fileNameToStore;
+        $image = Image::findorFail($id);
+        $image->title = $request->title;
         $image->save();
-        return redirect()->route('owner.images.index')
-        ->with(['message' => '画像を変更しました。',
-                'status' => 'success']);
+
+        return redirect()
+        ->route('owner.images.index')
+        ->with(['message' => '画像タイトルを更新しました。','status' => 'info']);
     }
 
     public function destroy($id)

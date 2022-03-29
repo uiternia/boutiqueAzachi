@@ -8,6 +8,7 @@
   
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            
             <div class="p-6 bg-gray-200 border-b border-gray-200">
                 <x-flash-message status="session('status')" />  
                 <div><button type="button" onclick="location.href='{{ route('owner.items.create')}}'" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">アイテム入荷</button></div>
@@ -38,4 +39,5 @@
           </div>
       </div>
   </div>
+  
 </x-app-layout>

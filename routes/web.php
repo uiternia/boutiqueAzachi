@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProductController;
-
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\ContactController;
+use App\Http\Controllers\User\FavoriteController;
+use App\Http\Controllers\User\ItemController;
+use App\Models\Cart;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +24,32 @@ Route::get('/', function () {
 
 Route::middleware('auth:users')->group(function(){
 Route::get('/',[ProductController::class,'index'])->name('products.index');
-Route::get('show/{Product}',[ProductController::class,'show'])->name('products.show');
+Route::get('show/{product}',[ProductController::class,'show'])->name('products.show');
+Route::get('shop/{shop}',[ProductController::class,'shop'])->name('products.shop');
+Route::get('information',[ProductController::class,'information'])->name('products.information');
 });
+
+Route::prefix('cart')->middleware('auth:users')->group(function(){
+    Route::get('/',[CartController::class,'index'])->name('cart.index');
+    Route::post('add',[CartController::Class,'add'])->name('cart.add');
+    Route::post('delete/{item}',[CartController::Class,'delete'])->name('cart.delete');
+    Route::get('checkout',[CartController::Class,'checkout'])->name('cart.checkout');
+    Route::get('success',[CartController::class,'success'])->name('cart.success');
+    Route::get('cancel',[CartController::class,'cancel'])->name('cart.cancel');
+});
+
+Route::prefix('contact')->middleware('auth:users')->group(function(){
+    Route::get('/',[ContactController::class,'index'])->name('contact.index');
+    Route::post('thanks',[ContactController::Class,'thanks'])->name('contacts.thanks');
+});
+
+Route::prefix('favorite')->middleware('auth:users')->group(function(){
+    Route::get('/',[FavoriteController::class,'view'])->name('favorite.view');
+    // Route::post('store',[FavoriteController::Class,'store'])->name('favorite.store');
+    // Route::post('delete/{product}',[FavoriteController::Class,'delete'])->name('favorite.delete');
+});
+
+
 
 require __DIR__.'/auth.php';
 

@@ -25,6 +25,10 @@ class ItemSeeder extends Seeder
             'shop_id' => 1,
             'item_category_id' =>1,
             'image1' => 1,
+            'image2' => 2,
+            'image3' => 4,
+            'image4' => 5,
+            
         ],
         [
             'name' => 'コート',
@@ -35,6 +39,9 @@ class ItemSeeder extends Seeder
             'shop_id' => 1,
             'item_category_id' =>2,
             'image1' => 2,
+            'image2' => 2,
+            'image3' => 4,
+            'image4' => 5,
         ],
         [
             'name' => 'コート',
@@ -45,6 +52,9 @@ class ItemSeeder extends Seeder
             'shop_id' => 2,
             'item_category_id' =>2,
             'image1' => 2,
+            'image2' => 2,
+            'image3' => 4,
+            'image4' => 5,
         ],
         
      ]);
