@@ -14,7 +14,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "stripe/stripe-php": "^7.114",
-        "fzaninotto/faker": "^1.9"
+        "fzaninotto/faker": "^1.9",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
