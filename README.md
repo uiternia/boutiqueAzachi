@@ -16,16 +16,16 @@ git clone　https://github.com/uiternia/boutiqueAzachi.git
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=boutiqueAzachi
-DB_USERNAME=azachi
-DB_PASSWORD=passworddesu0910
+DB_DATABASE=databasename
+DB_USERNAME=username
+DB_PASSWORD=password
 
 
 XAMPP/MAMPまたは他の開発環境でDBを起動した後に
 
 php artisan migrate:fresh --seed
 
-と実行してください。(データベーステーブルとダミーデータが追加されればOK)
+と実行してください。(データベーステーブルとダミーデータが追加されれば大丈夫です)
 
 最後に
 php artisan key:generate
