@@ -57,33 +57,7 @@
       <button class="ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">絞り込む</button>
     </div>
   </div>
-
-    {{-- <div>
-      <span class="text-sm">ブランド名</span><br>
-      <select name="category" id="category">
-        <span class="text-sm">表示順</span><br>
-        <option value="0" @if(\Request::get('category') === '0') selected @endif>全て</option>
-          @foreach($categories as $category)
-          <option value="{{ $category->id }}">
-          {{ $category->name }}
-          </option>
-          @endforeach
-      </select>
-    </div> --}}
-
-    {{-- <div>
-      <span class="text-sm">カテゴリー</span><br>
-      <select name="clothes" id="clothes">
-        <span class="text-sm">表示順</span><br>
-        <option value="0" @if(\Request::get('clothes') === '0') selected @endif>全て</option>
-          @foreach($category->item as $item)
-          <option value="{{ $item->id }}"@if(\Request::get('clothes') == $item->id) selected @endif>
-          {{ $item->name }}
-          </option>
-          @endforeach
-      </select>
-    </div> --}}
-  </div>
+</div>
 </form>
   
   <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
@@ -91,7 +65,6 @@
     <div class="mb-10 md:mb-16">
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">Items</h2>
 
-      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated.</p>
     </div>
     <!-- text - end -->
 
