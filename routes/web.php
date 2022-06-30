@@ -45,8 +45,8 @@ Route::prefix('contact')->middleware('auth:users')->group(function(){
 
 Route::prefix('favorite')->middleware('auth:users')->group(function(){
     Route::get('/',[FavoriteController::class,'view'])->name('favorite.view');
-    // Route::post('store',[FavoriteController::Class,'store'])->name('favorite.store');
-    // Route::post('delete/{product}',[FavoriteController::Class,'delete'])->name('favorite.delete');
+    Route::post('store',[FavoriteController::Class,'store'])->name('favorite.store');
+    Route::post('delete/{product}',[FavoriteController::Class,'delete'])->name('favorite.delete');
 });
 
 

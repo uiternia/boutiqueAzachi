@@ -19,7 +19,7 @@
                   @foreach ($images as $image)
                   <div class="rounded-md w-1/3 p-4">
                     <a href="{{ route('owner.images.edit',['image' => $image->id ])}}">
-                      <div class="border border-double border-4 border-gray-600 rounded-md p-2 md:p-4">
+                      <div class="border-double border-4 border-gray-600 rounded-md p-2 md:p-4">
                         <x-thumbnail :filename="$image->filename" type="products" />
                       </div>
                     </a>

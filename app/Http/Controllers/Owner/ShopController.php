@@ -53,6 +53,7 @@ class ShopController extends Controller
             ]);
 
         $imageFile = $request->image;
+        dd($imageFile);
         if(!is_null($imageFile) && $imageFile->isValid())
         {
             $fileNameToStore = ImageService::upload($imageFile,'shops');

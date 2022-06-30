@@ -17,7 +17,6 @@ class CartController extends Controller
 {
     public function index()
     {
-
         $user = User::findOrFail(Auth::id());
         $products = $user->items;
         $totalPrice = 0;
