@@ -15,10 +15,10 @@ class FavoriteController extends Controller
 {
     public function view()
     {
-        // $user = User::findOrFail(Auth::id());
-        // $favorites = $user->item_favorites();
-        // dd($favorites);
-        return view('user.favorite');
+        $user = User::findOrFail(Auth::id());
+        $favorites = $user->item_favorites()->get();
+       
+        return view('user.favorite',compact('favorites'));
     }
 
     public function store(Request $request)
@@ -27,16 +27,14 @@ class FavoriteController extends Controller
             'item_id' => $request->product_id,
             'user_id' => Auth::id(),
         ]);
-
-
         return back();
     }
 
     public function delete($itemId)
     {
         $user = User::findOrFail(Auth::id());
-        if ($user->is_favorite($itemId)) {
-            $user->favorite_items()->detach($itemId);
+        if ($user->item_favorites($itemId)) {
+            $user->item_favorites()->detach($itemId);
         }
         return back();
     }

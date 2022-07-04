@@ -8,8 +8,7 @@
     <div class="my-2">
       <h3 class="text-xl font-bold tracking-wider">お気に入り一覧</h3>
     </div>
-  </div>まだ未実装です。申し訳ないです。</div>
-    {{-- @foreach ($favorites as $favorite)
+    @foreach ($favorites as $item)
     <table class="w-full shadow-inner">
       <thead>
         <tr class="bg-gray-100">
@@ -31,8 +30,10 @@
             </div>
           </td>
           <td class="p-4 px-6 text-center whitespace-nowrap">
-            <div class="flex flex-col items-center justify-center">
+            <div class="flex flex-col text-blue-600 items-center justify-center">
+              <a href="{{ route('user.products.show',['product' => $item->id])}}">
               <h3>{{$item->name}}</h3>
+              </a>
             </div>
           </td>
           
@@ -63,7 +64,7 @@
         </tr>
       </tbody>
     </table>
-    @endforeach --}}
+    @endforeach
     
   </div>
 </div>

@@ -10,6 +10,10 @@ use App\Models\Stock;
 use App\Models\BrandCategory;
 use App\Models\ItemCategory;
 use App\Models\Shop;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Favorite;
 
 class ProductController extends Controller
 {
@@ -46,14 +50,15 @@ class ProductController extends Controller
 
     public function show($id){
         $product = Item::findOrFail($id);
-
+        $user = User::findOrFail(Auth::id());
+        $favorite = $user->item_favorites()->where('item_id',$id)->first();
         $quantity = Stock::where('item_id',$product->id)
         ->sum('quantity');
 
         if($quantity > 9){
             $quantity = 9;
         } 
-        return view('user.show',compact('product','quantity'));
+        return view('user.show',compact('product','quantity','favorite'));
     }
 
     public function shop($id){
